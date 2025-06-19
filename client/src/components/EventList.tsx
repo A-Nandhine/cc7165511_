@@ -15,7 +15,7 @@ const EventList: React.FC = () => {
     // Fetch events from your API
     const fetchEvents = async () => {
       try {
-        const res = await fetch('${import.meta.env.VITE_BACKEND_URL}/api/events');
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/events`);
         const data = await res.json();
         setEvents(data);
       } catch (err) {
