@@ -23,7 +23,7 @@ const EventForm: React.FC<EventFormProps> = ({ currentUser }) => {
   // Fetch existing event if in edit mode
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:5000/api/events/${id}`)
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/events/${id}`)
         .then(res => res.json())
         .then((event: Event) => {
           setTitle(event.title);
@@ -82,14 +82,15 @@ const EventForm: React.FC<EventFormProps> = ({ currentUser }) => {
 
       if (id) {
         // Update
-        await fetch(`http://localhost:5000/api/events/${id}`, {
+        await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/events/${id}`, {
+          
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)
         });
       } else {
         // Create
-        await fetch(`http://localhost:5000/api/events`, {
+        await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/events`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(formData)

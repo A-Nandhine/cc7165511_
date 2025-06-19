@@ -15,7 +15,7 @@ const EventList: React.FC = () => {
     // Fetch events from your API
     const fetchEvents = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/events');
+        const res = await fetch('${import.meta.env.VITE_BACKEND_URL}/api/events');
         const data = await res.json();
         setEvents(data);
       } catch (err) {
@@ -68,7 +68,7 @@ const EventList: React.FC = () => {
   const handleDelete = async (id: string, title: string) => {
     if (window.confirm(`Are you sure you want to delete "${title}"?`)) {
       try {
-        await fetch(`http://localhost:5000/api/events/${id}`, { method: 'DELETE' });
+        await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/events/${id}`, { method: 'DELETE' });
         setEvents(prev => prev.filter(e => e._id !== id));
       } catch (err) {
         console.error('Error deleting event:', err);
