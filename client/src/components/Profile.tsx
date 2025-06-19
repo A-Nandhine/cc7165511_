@@ -203,7 +203,7 @@ const Profile: React.FC<ProfileProps> = ({ user }) => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/events');
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/events`);
         const data: Event[] = await res.json();
         const userEvents = data.filter(e => e.createdBy === user.name);
         setEvents(userEvents);
